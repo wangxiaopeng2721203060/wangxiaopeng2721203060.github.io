@@ -64,9 +64,6 @@
 <meta property="og:site_name" content="老渔夫爱吃锅包肉">
 <meta property="og:description" content="Zabbix 监控系统参考链接 http://www.zsythink.net/archives/447">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CLocal%5CTemp%5C1576653301515.jpg">
-<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CLocal%5CTemp%5C1576654020563.jpg">
-<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CLocal%5CTemp%5C1576671582254.jpg">
 <meta property="og:image" content="http://yoursite.com/2030/10/18/Zabbix%20监控系统/1577188749508.jpg">
 <meta property="og:image" content="http://yoursite.com/2030/10/18/Zabbix%20监控系统/1577189089487.jpg">
 <meta property="og:image" content="http://yoursite.com/2030/10/18/Zabbix%20监控系统/1577235080635.jpg">
@@ -113,11 +110,11 @@
 <meta property="og:image" content="http://yoursite.com/2030/10/18/Zabbix%20监控系统/1577324037183.jpg">
 <meta property="og:image" content="http://yoursite.com/2030/10/18/Zabbix%20监控系统/1577324150680.jpg">
 <meta property="og:image" content="http://yoursite.com/2030/10/18/Zabbix%20监控系统/1577324218152.jpg">
-<meta property="og:updated_time" content="2019-12-26T02:58:24.132Z">
+<meta property="og:updated_time" content="2019-12-26T03:06:38.964Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zabbix 监控系统">
 <meta name="twitter:description" content="Zabbix 监控系统参考链接 http://www.zsythink.net/archives/447">
-<meta name="twitter:image" content="c:%5CUsers%5CLenovo%5CAppData%5CLocal%5CTemp%5C1576653301515.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2030/10/18/Zabbix%20监控系统/1577188749508.jpg">
   <link rel="canonical" href="http://yoursite.com/2030/10/18/Zabbix 监控系统/">
 
 
@@ -498,13 +495,9 @@
 <li><strong>zabbix web</strong>：zabbix的web界面，管理员通过web界面管理zabbix配置以及查看zabbix相关监控信息</li>
 <li><strong>zabbix proxy</strong>：可选组件，用于分布式监控环境中，zabbix proxy代表server端，完成局部区域内的信息收集，最终统一发往server端</li>
 </ul>
-<p>如下图1-1：</p>
-<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CLocal%5CTemp%5C1576653301515.jpg" alt="1576653301515"></p>
 <ul>
 <li>我们将zabbix agent 部署到被监控主机上，由agent采集数据，报告给负责控制中心主机，中心主机也就是master/agent模型中的master，负责监控的中心主机被称为zabbix serevr，zabbix server将从agent端接收到信息储存于zabbix的数据库中，我们把zabbix的数据库端称为zabbix database，如果管理员需要查看各种监控信息，则需要zabbix的GUI，zabbix的GUI是一种Web GUI，我们称之为zabbix web，zabbix web是使用PHP编写的，所以，如果想要使用zabbix web展示相关监控信息，需要依赖LAMP环境，不管 是zabbix server，或是zabbix web，他们都需要连接到zabbix database获取相关数据</li>
 </ul>
-<p>如下图1-2：</p>
-<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CLocal%5CTemp%5C1576654020563.jpg" alt="1576654020563"></p>
 <ul>
 <li>当监控规模变得庞大时，我们可能有成千上万台设备需要监控，这时我们是否需要部署多套zabbix系统进行监控呢？如果部署多套zabbix监控系统。那么监控压力就会被分摊，但是，把这些监控的对象将会被尽量平均的分配到不同的监控系统中，这个时候，我们就无法通过统一的监控入口，去监控这些对象了。虽然分摊了监控压力，但是也增加了监控工作的复杂度？其实，zabbix天生就有处理这种问题的能力，因为zabbix支持这种分布式监控，我们可以把成千上万台的监控对象分成不同的区域，每个区域中设置一台代理主机，区域内的每个监控对象的信息被agent采集，提交给代理 主机，在这个区域内，代理主机的作用就好比zabbix server，我们称为这些代理主机为zabbix proxy，zabbix proxy再将收集到的信息统一提交给真正的zabbix server处理。这样，zabbix proxy不仅分摊了zabbix server的压力，同时，我们还能够通过统一的监控入口，监控所有的对象</li>
 </ul>
@@ -535,7 +528,7 @@
 <h5 id="安装-zabbix-server"><a href="#安装-zabbix-server" class="headerlink" title="安装 zabbix server"></a>安装 zabbix server</h5><p>为了方便安装，配置zabbix的官方yum源</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://repo.zabbix.com/</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CLocal%5CTemp%5C1576671582254.jpg" alt="1576671582254">我们配置一下zabbix3.0的yum源</p>
+<p>我们配置一下zabbix3.0的yum源</p>
 <p><img src="./1577188749508.jpg" alt="1576672159548"></p>
 <p>首先进入<code>/ect/yum.repo.d/</code>文件夹</p>
 <p>查看一下 是否有<code>zabbix.repo</code>，如果没有创建一个并编写，如下图格式</p>

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="老渔夫爱吃锅包肉" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="处理流程　　sed（流处理编辑器），处理文本的过程如下：">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sed">
+<meta property="og:url" content="http://yoursite.com/2030/07/15/sed(1)/index.html">
+<meta property="og:site_name" content="老渔夫爱吃锅包肉">
+<meta property="og:description" content="处理流程　　sed（流处理编辑器），处理文本的过程如下：">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-26T01:59:19.377Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sed">
+<meta name="twitter:description" content="处理流程　　sed（流处理编辑器），处理文本的过程如下：">
+  <link rel="canonical" href="http://yoursite.com/2030/07/15/sed(1)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>sed | 老渔夫爱吃锅包肉</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">老渔夫爱吃锅包肉</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-主页">
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>主页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-关于">
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-标签">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-分类">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-档案">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>档案</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-相册">
+      
+    
+
+    <a href="/photo" rel="section"><i class="fa fa-fw fa-camera"></i>相册</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="fa fa-search fa-fw"></i>Search</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+    
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2030/07/15/sed(1)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王小朋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img.52z.com/upload/news/image/20190123/20190123012823_24294.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老渔夫爱吃锅包肉">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">sed
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2030-07-15 00:00:00" itemprop="dateCreated datePublished" datetime="2030-07-15T00:00:00+08:00">2030-07-15</time>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h2><p>　　sed（流处理编辑器），处理文本的过程如下：</p><a id="more"></a>
+<p>　　1、从文本或者管道中读入一行内容到模式空间（临时缓冲区）</p>
+<p>　　2、使用sed命令处理，重复第1步，直到文件处理完毕</p>
+<p>　　3、输出到屏幕</p>
+<p>　　注意两点：</p>
+<p>　　1、sed一次处理一行的内容</p>
+<p>　　2、sed默认的不改变文件内容</p>
+<h2 id><a href="#" class="headerlink" title></a></h2><h2 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h2><p>　　</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# cat -n data.txt``     ``1  小红        女  20  BeiJing         China``     ``2  小明        男  22  ChongQing       China``     ``3  花花        女  30  HeBei           China``     ``4  Jane        女  29  Los Angeles     America``     ``5  Maecheal    男  30  Washington      America``     ``6  山本        男  25  Nagasaki        Japan``     ``7  村上春树    男  40  Hiroshima       Japan``     ``8  贝爷        男  35  Paris           Franch`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h2 id="使用sed的格式"><a href="#使用sed的格式" class="headerlink" title="使用sed的格式"></a>使用sed的格式</h2><p>　　命令行格式：将包含sed的命令写在命令行中执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`$ ``sed` `[options] ``'command'` `files`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<p>　　脚本格式：将sed的命令写在一个脚本中，然后执行的时候，指定sed脚本的路径即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`$ ``sed` `-f scriptfile files`</span><br></pre></td></tr></table></figure>
+
+<p>　　上面这两个命令中，files都是要进行处理的文件。</p>
+<h2 id="命令行格式"><a href="#命令行格式" class="headerlink" title="命令行格式"></a>命令行格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`$``sed` `[options] ``&apos;command&apos;` `files`</span><br></pre></td></tr></table></figure>
+
+<p>　　options可以使用下面这几个值：</p>
+<p>　　　　-e：可以指定多个command</p>
+<p>　　　　-n：与p（print）命令合用时，表示只显示被选中的行，而不是显示所有的行，然后被选中的行会显示两次。</p>
+<p>　　　　-i：将sed的操作结果更新到文件中，因为默认的是不会操作文件本身的。</p>
+<p>　　command：行定位（正则）+ sed命令，首先会通过正则行定位，选中要进行操作的行，然后执行sed命令</p>
+<h2 id="行定位"><a href="#行定位" class="headerlink" title="行定位"></a>行定位</h2><h3 id="选择1行，可以使用两种方式："><a href="#选择1行，可以使用两种方式：" class="headerlink" title="　　选择1行，可以使用两种方式："></a>　　选择1行，可以使用两种方式：</h3><p>　　　　1、n；　　　　选中1行，n表示行号</p>
+<p>　　　　2、/root/　　使用正则表达式，注意要包含在/…./之间</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# #打印第5行``[root@localhost ``test``]``# sed -n "5 p" data.txt``Maecheal    男  30  Washington      America` `[root@localhost ``test``]``# #打印匹配"China"的记录``[root@localhost ``test``]``# sed -n "/china/ p" data.txt``[root@localhost ``test``]``# sed -n "/China/ p" data.txt``小红        女  20  BeiJing         China``小明        男  22  ChongQing       China``花花        女  30  HeBei           China`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h3 id="选择多行，同样有两种方式："><a href="#选择多行，同样有两种方式：" class="headerlink" title="　　选择多行，同样有两种方式："></a>　　选择多行，同样有两种方式：</h3><p>　　　　1、x,y；　　　　选中行号在x~y之间的行</p>
+<p>　　　　2、/小红/, /山本/    选择匹配两个正则表达式之间的行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# #打印第3~6行``[root@localhost ``test``]``# cat -n data.txt | sed -n "3,6 p"``     ``3  花花        女  30  HeBei           China``     ``4  Jane        女  29  Los Angeles     America``     ``5  Maecheal    男  30  Washington      America``     ``6  山本        男  25  Nagasaki        Japan` `[root@localhost ``test``]``# #打印“Jane”的行，到“贝爷”之间的行``[root@localhost ``test``]``# sed -n "/Jane/, /贝爷/ p" data.txt``Jane        女  29  Los Angeles     America``Maecheal    男  30  Washington      America``山本        男  25  Nagasaki        Japan``村上春树    男  40  Hiroshima       Japan``贝爷        男  35  Paris           Franch`</span><br></pre></td></tr></table></figure>
+
+<p>　　　　</p>
+<h3 id="不选择某一行或者某几行"><a href="#不选择某一行或者某几行" class="headerlink" title="　　不选择某一行或者某几行"></a>　　不选择某一行或者某几行</h3><p>　　　　在后面加 ！ 即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# #打印除了第4行以外的所有行``[root@localhost ``test``]``# cat -n data.txt | sed -n "4! p"``     ``1  小红        女  20  BeiJing         China``     ``2  小明        男  22  ChongQing       China``     ``3  花花        女  30  HeBei           China``     ``5  Maecheal    男  30  Washington      America``     ``6  山本        男  25  Nagasaki        Japan``     ``7  村上春树    男  40  Hiroshima       Japan``     ``8  贝爷        男  35  Paris           Franch` `[root@localhost ``test``]``# #打印除3-7行之外的行``[root@localhost ``test``]``# cat -n data.txt | sed -n "3,7! p"``     ``1 小红        女  20  BeiJing         China``     ``2  小明        男  22  ChongQing       China``     ``8  贝爷        男  35  Paris           Franch`</span><br></pre></td></tr></table></figure>
+
+<p>　　 </p>
+<h3 id="间隔几行选择"><a href="#间隔几行选择" class="headerlink" title="　　间隔几行选择"></a>　　间隔几行选择</h3><p>　　　　使用x~y格式，首先打印第x行，然后每个y行，就打印一次</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# #打印第3行，之后，每隔2行，就打印一次``[root@localhost ``test``]``# cat -n data.txt | sed -n "3~2 p"``     ``3  花花        女  30  HeBei           China``     ``5  Maecheal    男  30  Washington      America``     ``7  村上春树    男  40  Hiroshima       Japan`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h2 id="操作命令"><a href="#操作命令" class="headerlink" title="操作命令"></a>操作命令</h2><p>　　sed有几个基本的操作命令，分别是下面几个：</p>
+<p>　　1、-a (append，添加，在行后追加）</p>
+<p>　　2、-i（insert，插入，在行前插入）</p>
+<p>　　3、-d（delete，删除行）</p>
+<p>　　4、-c（chage，替换）</p>
+<p>　　5、-s（subsitute，替换）</p>
+<h2 id="a-增加行"><a href="#a-增加行" class="headerlink" title="-a 增加行"></a>-a 增加行</h2><p>　　</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# #在第3行后面增加一行“---------------”``[root@localhost ``test``]``# cat -n data.txt | sed "3a -------------"``     ``1  小红        女  20  BeiJing         China``     ``2  小明        男  22  ChongQing       China``     ``3  花花        女  30  HeBei           China``-------------``     ``4  Jane        女  29  Los Angeles     America``     ``5  Maecheal    男  30  Washington      America``     ``6  山本        男  25  Nagasaki        Japan``     ``7  村上春树    男  40  Hiroshima       Japan``     ``8  贝爷        男  35  Paris           Franch` `     ` `[root@localhost ``test``]``# #在3~5行的每一行后面加一行“==========”``[root@localhost ``test``]``# cat -n data.txt | sed "3,5a =========="``     ``1  小红        女  20  BeiJing         China``     ``2  小明        男  22  ChongQing       China``     ``3  花花        女  30  HeBei           China``==========``     ``4  Jane        女  29  Los Angeles     America``==========``     ``5  Maecheal    男  30  Washington      America``==========``     ``6  山本        男  25  Nagasaki        Japan``     ``7  村上春树    男  40  Hiroshima       Japan``     ``8  贝爷        男  35  Paris           Franch`  `[root@localhost ``test``]``# #在每一行后面增加一行“===========”``[root@localhost ``test``]``# cat -n data.txt | sed "a =========="``     ``1  小红        女  20  BeiJing         China``==========``     ``2  小明        男  22  ChongQing       China``==========``     ``3  花花        女  30  HeBei           China``==========``     ``4  Jane        女  29  Los Angeles     America``==========``     ``5  Maecheal    男  30  Washington      America``==========``     ``6  山本        男  25  Nagasaki        Japan``==========``     ``7  村上春树    男  40  Hiroshima       Japan``==========``     ``8  贝爷        男  35  Paris           Franch``==========` `[root@localhost ``test``]``# #在行末增加一行“-------------------”``[root@localhost ``test``]``# sed '$a -------------------------' data.txt``小红        女  20  BeiJing         China``小明        男  22  ChongQing       China``花花        女  30  HeBei           China``Jane        女  29  Los Angeles     America``Maecheal    男  30  Washington      America``山本        男  25  Nagasaki        Japan``村上春树    男  40  Hiroshima       Japan``贝爷        男  35  Paris           Franch``-------------------------`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h2 id="i-插入行"><a href="#i-插入行" class="headerlink" title="-i 插入行"></a>-i 插入行</h2><p>　　-i插入行和增加行的操作一样，区别是a是在行之后增加，i是在行之前插入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# #在第3行之前增加一行“---------------”``[root@localhost ``test``]``# cat -n data.txt | sed "3i --------------"``     ``1  小红        女  20  BeiJing         China``     ``2  小明        男  22  ChongQing       China``--------------``     ``3  花花        女  30  HeBei           China``     ``4  Jane        女  29  Los Angeles     America``     ``5  Maecheal    男  30  Washington      America``     ``6  山本        男  25  Nagasaki        Japan``     ``7  村上春树    男  40  Hiroshima       Japan``     ``8  贝爷        男  35  Paris           Franch` `[root@localhost ``test``]``# #在第3~5行的每一行之前插入一行"==========="``[root@localhost ``test``]``# cat -n data.txt | sed "3,5i ==========="``     ``1  小红        女  20  BeiJing         China``     ``2  小明        男  22  ChongQing       China``===========``     ``3  花花        女  30  HeBei           China``===========``     ``4  Jane        女  29  Los Angeles     America``===========``     ``5  Maecheal    男  30  Washington      America``     ``6  山本        男  25  Nagasaki        Japan``     ``7  村上春树    男  40  Hiroshima       Japan``     ``8  贝爷        男  35  Paris           Franch``[root@localhost ``test``]``# #在每一行之前插入一行"==========="``[root@localhost ``test``]``# cat -n data.txt | sed "i ==========="``===========``     ``1  小红        女  20  BeiJing         China``===========``     ``2  小明        男  22  ChongQing       China``===========``     ``3  花花        女  30  HeBei           China``===========``     ``4  Jane        女  29  Los Angeles     America``===========``     ``5  Maecheal    男  30  Washington      America``===========``     ``6  山本        男  25  Nagasaki        Japan``===========``     ``7  村上春树    男  40  Hiroshima       Japan``===========``     ``8  贝爷        男  35  Paris           Franch`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h2 id="c-替换行"><a href="#c-替换行" class="headerlink" title="-c 替换行"></a>-c 替换行</h2><p>　　替换行，是指，将指定行，整行内容都替换为指定内容，注意-s是指替换行中的一部分内容。</p>
+<p>　　注意，区间替换的时候，是整体替换，而不是逐行替换。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# #将第2行替换为"hello shell"``[root@localhost ``test``]``# cat -n data.txt | sed "2c hello world"``     ``1  小红        女  20  BeiJing         China``hello world``     ``3  花花        女  30  HeBei           China``     ``4  Jane        女  29  Los Angeles     America``     ``5  Maecheal    男  30  Washington      America``     ``6  山本        男  25  Nagasaki        Japan``     ``7  村上春树    男  40  Hiroshima       Japan``     ``8  贝爷        男  35  Paris           Franch` `[root@localhost ``test``]``# #尝试将第2~5行的每一行都替换为"hello world"，但是实际操作后会将2-5行整体替换``[root@localhost ``test``]``# cat -n data.txt | sed "2,5c hello world"``     ``1  小红        女  20  BeiJing         China``hello world``     ``6  山本        男  25  Nagasaki        Japan``     ``7  村上春树    男  40  Hiroshima       Japan``     ``8  贝爷        男  35  Paris           Franch` `[root@localhost ``test``]``# #将每一行都替换为“hello world”``[root@localhost ``test``]``# cat -n data.txt | sed "c hello world"``hello world``hello world``hello world``hello world``hello world``hello world``hello world``hello world`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h2 id="d-删除行"><a href="#d-删除行" class="headerlink" title="-d 删除行"></a>-d 删除行</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# #删除第4行``[root@localhost ``test``]``# cat -n data.txt | sed "4d"``     ``1  小红        女  20  BeiJing         China``     ``2  小明        男  22  ChongQing       China``     ``3  花花        女  30  HeBei           China``     ``5  Maecheal    男  30  Washington      America``     ``6  山本        男  25  Nagasaki        Japan``     ``7  村上春树    男  40  Hiroshima       Japan``     ``8  贝爷        男  35  Paris           Franch` `[root@localhost ``test``]``# #删除第4-6行``[root@localhost ``test``]``# cat -n data.txt | sed "4,6d"``     ``1  小红        女  20  BeiJing         China``     ``2  小明        男  22  ChongQing       China``     ``3  花花        女  30  HeBei           China``     ``7  村上春树    男  40  Hiroshima       Japan``     ``8  贝爷        男  35  Paris           Franch` `[root@localhost ``test``]``# #删除所有行（无意义）``[root@localhost ``test``]``# cat -n data.txt | sed "d"`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h2 id="s-替换行的部分内容"><a href="#s-替换行的部分内容" class="headerlink" title="-s 替换行的部分内容"></a>-s 替换行的部分内容</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# #将字符a替换为X``[root@localhost ``test``]``# sed 's/a/X/' data.txt``小红        女  20  BeiJing         ChinX``小明        男  22  ChongQing       ChinX``花花        女  30  HeBei           ChinX``JXne        女  29  Los Angeles     America``MXecheal    男  30  Washington      America``山本        男  25  NXgasaki        Japan``村上春树    男  40  HiroshimX       Japan``贝爷        男  35  PXris           Franch`</span><br></pre></td></tr></table></figure>
+
+<p>　　注意，在替换的时候，只替换了一次，即只替换第一个匹配的内容。如果要将满足条件的内容都替换，就需要加上g</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# sed &apos;s/a/X/g&apos; data.txt``小红        女  20  BeiJing         ChinX``小明        男  22  ChongQing       ChinX``花花        女  30  HeBei           ChinX``JXne        女  29  Los Angeles     AmericX``MXecheXl    男  30  WXshington      AmericX``山本        男  25  NXgXsXki        JXpXn``村上春树    男  40  HiroshimX       JXpXn``贝爷        男  35  PXris           FrXnch`</span><br></pre></td></tr></table></figure>
+
+<p>　　 </p>
+<h2 id="sed试题"><a href="#sed试题" class="headerlink" title="sed试题"></a>sed试题</h2><p>　　1、在文件的第8行下面增加一行“hello world”，并且hello world前面要有4个空格</p>
+<p>　　</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# ifconfig eth0``eth0      Link encap:Ethernet  HWaddr 00:0C:29:21:0C:0F``          ``inet addr:192.168.228.153  Bcast:192.168.228.255  Mask:255.255.255.0``          ``inet6 addr: fe80::20c:29ff:fe21:c0f``/64` `Scope:Link``          ``UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1``          ``RX packets:27644 errors:0 dropped:0 overruns:0 frame:0``          ``TX packets:14175 errors:0 dropped:0 overruns:0 carrier:0``          ``collisions:0 txqueuelen:1000``          ``RX bytes:22947297 (21.8 MiB)  TX bytes:1135056 (1.0 MiB)` `[root@localhost ``test``]``# ifconfig eth0 | sed -n '/inet addr:/ p'``          ``inet addr:192.168.228.153  Bcast:192.168.228.255  Mask:255.255.255.0` `[root@localhost ``test``]``# ifconfig eth0 | sed -n '/inet addr:/ p' | sed 's/.*inet addr://'``192.168.228.153  Bcast:192.168.228.255  Mask:255.255.255.0` `[root@localhost ``test``]``# ifconfig eth0 | sed -n '/inet addr:/ p' | sed 's/.*inet addr://' | sed 's/B.*$//'``192.168.228.153`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h2 id="高级sed操作"><a href="#高级sed操作" class="headerlink" title="高级sed操作"></a>高级sed操作</h2><p>　　包括以下内容：</p>
+<p>　　　　1、{command1; command2; command 3}多个sed命令，使用“；”分开</p>
+<p>　　　　2、n表示跳1行</p>
+<p>　　　　3、&amp;表示前面已经匹配的字符串内容，反向引用，不用再写一次正则表达式</p>
+<p>　　　　　　</p>
+<h2 id="多个sed命令"><a href="#多个sed命令" class="headerlink" title="多个sed命令"></a>多个sed命令</h2><p>　　使用花括号{   }将多个sed命令包含在一起，多个sed之间用；分开</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# cat -n data.txt``     ``1  小红        女  20  BeiJing         China``     ``2  小明        男  22  ChongQing       China``     ``3  花花        女  30  HeBei           China``     ``4  Jane        女  29  Los Angeles     America``     ``5  Maecheal    男  30  Washington      America``     ``6  山本        男  25  Nagasaki        Japan``     ``7  村上春树    男  40  Hiroshima       Japan``     ``8  贝爷        男  35  Paris           Franch``[root@localhost ``test``]``# cat -n data.txt | sed '&#123;3,5 d; s/China/Chinese/&#125;'``     ``1  小红        女  20  BeiJing         Chinese``     ``2  小明        男  22  ChongQing       Chinese``     ``6  山本        男  25  Nagasaki        Japan``     ``7  村上春树    男  40  Hiroshima       Japan``     ``8  贝爷        男  35  Paris           Franch`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h2 id="跳行"><a href="#跳行" class="headerlink" title="跳行"></a>跳行</h2><p>　　打印奇数行和偶数行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# #打印奇数行``[root@localhost ``test``]``# cat -n data.txt | sed -n '1~2 p'``     ``1  小红        女  20  BeiJing         China``     ``3  花花        女  30  HeBei           China``     ``5  Maecheal    男  30  Washington      America``     ``7  村上春树    男  40  Hiroshima       Japan``[root@localhost ``test``]``# cat -n data.txt | sed -n '&#123;p; n&#125;'``     ``1  小红        女  20  BeiJing         China``     ``3  花花        女  30  HeBei           China``     ``5  Maecheal    男  30  Washington      America``     ``7  村上春树    男  40  Hiroshima       Japan``[root@localhost ``test``]``#``[root@localhost ``test``]``# #打印偶数行``[root@localhost ``test``]``# cat -n data.txt | sed -n '2~2 p'``     ``2  小明        男  22  ChongQing       China``     ``4  Jane        女  29  Los Angeles     America``     ``6  山本        男  25  Nagasaki        Japan``     ``8  贝爷        男  35  Paris           Franch``[root@localhost ``test``]``# cat -n data.txt | sed -n '&#123;n; p&#125;'``     ``2  小明        男  22  ChongQing       China``     ``4  Jane        女  29  Los Angeles     America``     ``6  山本        男  25  Nagasaki        Japan``     ``8  贝爷        男  35  Paris           Franch`</span><br></pre></td></tr></table></figure>
+
+<p>　　可以使用多个n来进行跳过</p>
+<h2 id="amp-反向引用"><a href="#amp-反向引用" class="headerlink" title="&amp;反向引用"></a>&amp;反向引用</h2><p>　　&amp;表示前面已经匹配的字符串内容，反向引用，不用再写一次正则表达式</p>
+<p>　　在男或者女之前加一个gender单词</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# cat -n data.txt | sed &apos;s/[男|女]/gender:[男|女]/&apos;``     ``1  小红        gender:[男|女]  20  BeiJing         China``     ``2  小明        gender:[男|女]  22  ChongQing       China``     ``3  花花        gender:[男|女]  30  HeBei           China``     ``4  Jane        gender:[男|女]  29  Los Angeles     America``     ``5  Maecheal    gender:[男|女]  30  Washington      America``     ``6  山本        gender:[男|女]  25  Nagasaki        Japan``     ``7  村上春树    gender:[男|女]  40  Hiroshima       Japan``     ``8  贝爷        gender:[男|女]  35  Paris           Franch``[root@localhost ``test``]``# cat -n data.txt | sed &apos;s/[男|女]/gender:&amp;/&apos;``     ``1  小红        gender:女  20  BeiJing         China``     ``2  小明        gender:男  22  ChongQing       China``     ``3  花花        gender:女  30  HeBei           China``     ``4  Jane        gender:女  29  Los Angeles     America``     ``5  Maecheal    gender:男  30  Washington      America``     ``6  山本        gender:男  25  Nagasaki        Japan``     ``7  村上春树    gender:男  40  Hiroshima       Japan``     ``8  贝爷        gender:男  35  Paris           Franch`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<p>　　案例1：将2.txt中的所有字母都变为大写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# cat -n data.txt``     ``1  小红        女  20  BeiJing         China``     ``2  小明        男  22  ChongQing       China``     ``3  花花        女  30  HeBei           China``     ``4  Jane        女  29  Los Angeles     America``     ``5  Maecheal    男  30  Washington      America``     ``6  山本        男  25  Nagasaki        Japan``     ``7  村上春树    男  40  Hiroshima       Japan``     ``8  贝爷        男  35  Paris           Franch``[root@localhost ``test``]``# cat -n data.txt | sed &apos;s/[A-Z]/\l&amp;/g&apos;``     ``1  小红        女  20  beijing         china``     ``2  小明        男  22  chongqing       china``     ``3  花花        女  30  hebei           china``     ``4  jane        女  29  los angeles     america``     ``5  maecheal    男  30  washington      america``     ``6  山本        男  25  nagasaki        japan``     ``7  村上春树    男  40  hiroshima       japan``     ``8  贝爷        男  35  paris           franch``[root@localhost ``test``]``# cat -n data.txt | sed &apos;s/[a-z]/\u&amp;/g&apos;``     ``1  小红        女  20  BEIJING         CHINA``     ``2  小明        男  22  CHONGQING       CHINA``     ``3  花花        女  30  HEBEI           CHINA``     ``4  JANE        女  29  LOS ANGELES     AMERICA``     ``5  MAECHEAL    男  30  WASHINGTON      AMERICA``     ``6  山本        男  25  NAGASAKI        JAPAN``     ``7  村上春树    男  40  HIROSHIMA       JAPAN``     ``8  贝爷        男  35  PARIS           FRANCH`</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="r-复制指定文件插入到匹配行"><a href="#r-复制指定文件插入到匹配行" class="headerlink" title="-r 复制指定文件插入到匹配行"></a>-r 复制指定文件插入到匹配行</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# cat A.txt``111111``222222``333333``[root@localhost ``test``]``# cat B.txt``AAAAAAA``BBBBBBB``CCCCCCC`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<p>　　将A.txt中的内容，插入到B.txt的第2行后面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# #将A.txt中的内容插入到B.txt中的第2行后面``[root@localhost ``test``]``# sed &apos;2 r A.txt&apos; B.txt``AAAAAAA``BBBBBBB``111111``222222``333333``CCCCCCC``[root@localhost ``test``]``# #将A.txt中的内容插入到B.txt中包含CCCCCC的行后面``[root@localhost ``test``]``# sed &apos;/CCCCCC/ r A.txt&apos; B.txt``AAAAAAA``BBBBBBB``CCCCCCC``111111``222222``333333``[root@localhost ``test``]``# #将A.txt中的内容插入B.txt中每一行的后面``[root@localhost ``test``]``# sed &apos;r A.txt&apos; B.txt``AAAAAAA``111111``222222``333333``BBBBBBB``111111``222222``333333``CCCCCCC``111111``222222``333333`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h2 id="w-复制匹配行，拷贝到指定文件中"><a href="#w-复制匹配行，拷贝到指定文件中" class="headerlink" title="-w 复制匹配行，拷贝到指定文件中"></a>-w 复制匹配行，拷贝到指定文件中</h2><p>　　对于1.txt中选中的行，保存到文件2.txt中，会首先清空2.txt的内容，然后将选中的行拷贝出来，再保存到B.txt中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# #将A.txt中的2-4行，写到C.txt中，注意会先清空C.txt``[root@localhost ``test``]``# sed &apos;2,4 w C.txt&apos; A.txt``111111``222222``333333``[root@localhost ``test``]``# cat C.txt``222222``333333`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h2 id="q-提前退出sed"><a href="#q-提前退出sed" class="headerlink" title="-q 提前退出sed"></a>-q 提前退出sed</h2><p>　　sed的处理流程是：从文件中读入一行，然后sed处理一行，一直到文件结束为止。</p>
+<p>　　使用q，可以让sed提前结束，不用读到文件结束。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`[root@localhost ``test``]``# #打印前3行``[root@localhost ``test``]``# sed '3 q' data.txt``小红        女  20  BeiJing         China``小明        男  22  ChongQing       China``花花        女  30  HeBei           China``[root@localhost ``test``]``#``[root@localhost ``test``]``# #找到第1个Japan``[root@localhost ``test``]``# sed '/Japan/ q' data.txt``小红        女  20  BeiJing         China``小明        男  22  ChongQing       China``花花        女  30  HeBei           China``Jane        女  29  Los Angeles     America``Maecheal    男  30  Washington      America``山本        男  25  Nagasaki        Japan`</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/uploads/微信二维码.jpg" alt="王小朋 wechat" style="width: 200px; max-width: 100%;">
+  <div></div>
+</div>
+
+      
+        
+      
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="http://www.feizl.com/upload2007/2017_04/17041815509707.jpg" alt="王小朋 坚持原创技术分享，您的支持将鼓励我继续创作！">
+        <p>坚持原创技术分享，您的支持将鼓励我继续创作！</p>
+      </div>
+        
+      
+      <div style="display: inline-block">
+        <img src="/uploads/微信收款二维码.jpg" alt="王小朋 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"># linux</i></a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2030/06/15/mysql_select/" rel="next" title="MySQL存储引擎如何选择">
+                  <i class="fa fa-chevron-left"></i> MySQL存储引擎如何选择
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2030/07/15/InnoDB存储引擎(1)/" rel="prev" title="InnoDB存储引擎">
+                  InnoDB存储引擎 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#处理流程"><span class="nav-text">处理流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试数据"><span class="nav-text">测试数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用sed的格式"><span class="nav-text">使用sed的格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行格式"><span class="nav-text">命令行格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行定位"><span class="nav-text">行定位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择1行，可以使用两种方式："><span class="nav-text">　　选择1行，可以使用两种方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择多行，同样有两种方式："><span class="nav-text">　　选择多行，同样有两种方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不选择某一行或者某几行"><span class="nav-text">　　不选择某一行或者某几行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#间隔几行选择"><span class="nav-text">　　间隔几行选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作命令"><span class="nav-text">操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a-增加行"><span class="nav-text">-a 增加行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#i-插入行"><span class="nav-text">-i 插入行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-替换行"><span class="nav-text">-c 替换行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#d-删除行"><span class="nav-text">-d 删除行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#s-替换行的部分内容"><span class="nav-text">-s 替换行的部分内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sed试题"><span class="nav-text">sed试题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级sed操作"><span class="nav-text">高级sed操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个sed命令"><span class="nav-text">多个sed命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跳行"><span class="nav-text">跳行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#amp-反向引用"><span class="nav-text">&amp;反向引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#r-复制指定文件插入到匹配行"><span class="nav-text">-r 复制指定文件插入到匹配行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#w-复制匹配行，拷贝到指定文件中"><span class="nav-text">-w 复制匹配行，拷贝到指定文件中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#q-提前退出sed"><span class="nav-text">-q 提前退出sed</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="https://img.52z.com/upload/news/image/20190123/20190123012823_24294.jpg"
+      alt="王小朋">
+  <p class="site-author-name" itemprop="name">王小朋</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/yourname" title="GitHub &rarr; https://github.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/yourname" title="Weibo &rarr; https://weibo.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://wangxiaopeng.top" title="https://wangxiaopeng.top" rel="noopener" target="_blank">老渔夫爱吃锅包肉</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://laxe.top" title="https://laxe.top" rel="noopener" target="_blank">大胖子</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王小朋</span>
+</div>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv">89568</span>次
+</span>
+<div class="copyright"><font color=black face=STLiti>Copyright &nbsp;</font><font color=black>&copy;</font> <font color=black face=STLiti>2016 - </font><font color=black face=STLiti><span itemprop="copyrightYear">2019</span></font>
+  <span class="with-love">
+    <i class="fa fa-[object Object]"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder" style="font-family:STLiti;color:black;">王小朋 . All Rights Reserved.</span>
+
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.1"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <link rel="stylesheet" href="/dist/APlayer.min.css">
+  <div id="aplayer"></div>
+  <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+  <script type="text/javascript" src="/dist/music.js"></script>
+
+
+  
+</body>
+
+</html>
+

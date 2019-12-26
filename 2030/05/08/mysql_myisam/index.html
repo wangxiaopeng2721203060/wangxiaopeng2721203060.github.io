@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="老渔夫爱吃锅包肉" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="MyISAM 介绍 myisam引擎是MySQL关系数据库系统的默认储存引擎（mysql 5.5.5之前）。这种MySQL表存储结构从旧的ISAM代码扩展出许多有用的功能。在新版本的Mysql中，Innodb引擎由于其对事务参照完整性，以及更高的并发性等优点开始逐步取代Myisam引擎。MyISAM是MySQL的默认数据库引擎（5.5版之前），由早期的ISAM所改良。虽然性能极佳，但却有一个缺点：">
+<meta name="keywords" content="Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL的MyISAM引擎">
+<meta property="og:url" content="http://yoursite.com/2030/05/08/mysql_myisam/index.html">
+<meta property="og:site_name" content="老渔夫爱吃锅包肉">
+<meta property="og:description" content="MyISAM 介绍 myisam引擎是MySQL关系数据库系统的默认储存引擎（mysql 5.5.5之前）。这种MySQL表存储结构从旧的ISAM代码扩展出许多有用的功能。在新版本的Mysql中，Innodb引擎由于其对事务参照完整性，以及更高的并发性等优点开始逐步取代Myisam引擎。MyISAM是MySQL的默认数据库引擎（5.5版之前），由早期的ISAM所改良。虽然性能极佳，但却有一个缺点：">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-26T01:59:04.502Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL的MyISAM引擎">
+<meta name="twitter:description" content="MyISAM 介绍 myisam引擎是MySQL关系数据库系统的默认储存引擎（mysql 5.5.5之前）。这种MySQL表存储结构从旧的ISAM代码扩展出许多有用的功能。在新版本的Mysql中，Innodb引擎由于其对事务参照完整性，以及更高的并发性等优点开始逐步取代Myisam引擎。MyISAM是MySQL的默认数据库引擎（5.5版之前），由早期的ISAM所改良。虽然性能极佳，但却有一个缺点：">
+  <link rel="canonical" href="http://yoursite.com/2030/05/08/mysql_myisam/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>MySQL的MyISAM引擎 | 老渔夫爱吃锅包肉</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">老渔夫爱吃锅包肉</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-主页">
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>主页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-关于">
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-标签">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-分类">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-档案">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>档案</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-相册">
+      
+    
+
+    <a href="/photo" rel="section"><i class="fa fa-fw fa-camera"></i>相册</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="fa fa-search fa-fw"></i>Search</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+    
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2030/05/08/mysql_myisam/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王小朋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img.52z.com/upload/news/image/20190123/20190123012823_24294.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老渔夫爱吃锅包肉">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">MySQL的MyISAM引擎
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2030-05-08 00:00:00" itemprop="dateCreated datePublished" datetime="2030-05-08T00:00:00+08:00">2030-05-08</time>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="MyISAM-介绍"><a href="#MyISAM-介绍" class="headerlink" title="MyISAM 介绍"></a>MyISAM 介绍</h4><blockquote>
+<p>myisam引擎是MySQL关系数据库系统的默认储存引擎（mysql 5.5.5之前）。这种MySQL表存储结构从旧的ISAM代码扩展出许多有用的功能。在新版本的Mysql中，Innodb引擎由于其对事务参照完整性，以及更高的并发性等优点开始逐步取代Myisam引擎。<br>MyISAM是MySQL的默认数据库引擎（5.5版之前），由早期的ISAM所改良。虽然性能极佳，但却有一个缺点：不支持事务处理（transaction）。</p>
+<p>MySQL的MyISAM存储引擎支持压缩表空间，压缩后的表空间会减少，但是压缩后的表是只读的，不能插入和更新数据，如果需要更新，则需要解压后更新，再压缩 。</p>
+<p>每一个myisam的表都对应于硬盘上的三个文件。这三个文件有一样的文件名，但是有不同的扩展名指示其类型用途：.frm文件保存表的定义，这个文件并不是myisam引擎的一部分，而是服务器的一部分；.MYD保存表的数据；.MYI是表的索引文件。.MYD和.MYI是MyISAM的关键点。</p>
+</blockquote><a id="more"></a>
+<h4 id="MyASAM-引擎的特点"><a href="#MyASAM-引擎的特点" class="headerlink" title="MyASAM 引擎的特点"></a>MyASAM 引擎的特点</h4><blockquote>
+<p>1.不支持事务（事务是指逻辑上的一组操作，组成这组操作的各个单元，要么全成功要么全失败）<br>2.表级锁定，数据更新时锁定整个表：其锁定机制是表级锁定，这虽然可以让锁定的实现成本很小但是也同时大大降低了其并发性能。<br>3.读写互相阻塞：不仅会在写入的时候阻塞读取，myisam还会在读取的时候阻塞写入，但读本身并不会阻塞另外的读。<br>4.只会缓存索引：myisam可以通过key_buffer_size缓存索引，以大大提高访问性能，减少产品IO，但是这个缓存区只会缓存索引，而不会缓存数据。<br>key_buffer_size = 16M<br>5.读取速度较快，占用资源相对少。<br>6.不支持外键约束，但支持全文索引。</p>
+</blockquote>
+<h4 id="MyISAM-引攀适用的生产业务场景，"><a href="#MyISAM-引攀适用的生产业务场景，" class="headerlink" title="MyISAM 引攀适用的生产业务场景，"></a>MyISAM 引攀适用的生产业务场景，</h4><blockquote>
+<p>1.不需要事务支持的业务（例如转账就不行）。<br>2.一般为读数据比较多的应用，读写都频繁场景不适合，读多或者写多的都适合。<br>3.读写并发访问相对较低的业务（纯读纯写高并发也可以）（锁定机制问题）<br>4.数据修改相对较少的业务（阻塞问题）。<br>5.以读为主的业务，例如：数据库系统表、www， blog ，图片信息数据库，用户数据库，商品库等业务。<br>6.对数据一致性要求不是非常高的业务（不支持事务）。<br>7.硬件资源比较差的机器可以用 MyiSAM （占用资源少）<br>8.使用读写分离的 MySQL 从库可以使用 MyISAM。</p>
+</blockquote>
+<blockquote>
+<p>小结：单一对数据库的操作都可以使用MyiSAM，所谓单一就是尽量纯读，或纯写 ( insert . update , delete ）等</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/uploads/微信二维码.jpg" alt="王小朋 wechat" style="width: 200px; max-width: 100%;">
+  <div></div>
+</div>
+
+      
+        
+      
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="http://www.feizl.com/upload2007/2017_04/17041815509707.jpg" alt="王小朋 坚持原创技术分享，您的支持将鼓励我继续创作！">
+        <p>坚持原创技术分享，您的支持将鼓励我继续创作！</p>
+      </div>
+        
+      
+      <div style="display: inline-block">
+        <img src="/uploads/微信收款二维码.jpg" alt="王小朋 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Mysql/" rel="tag"><i class="fa fa-tag"># Mysql</i></a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2030/03/30/Docker管理/" rel="next" title="Docker">
+                  <i class="fa fa-chevron-left"></i> Docker
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2030/06/15/mysql_memory/" rel="prev" title="MySQL的MEMORY引擎">
+                  MySQL的MEMORY引擎 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#MyISAM-介绍"><span class="nav-text">MyISAM 介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MyASAM-引擎的特点"><span class="nav-text">MyASAM 引擎的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MyISAM-引攀适用的生产业务场景，"><span class="nav-text">MyISAM 引攀适用的生产业务场景，</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="https://img.52z.com/upload/news/image/20190123/20190123012823_24294.jpg"
+      alt="王小朋">
+  <p class="site-author-name" itemprop="name">王小朋</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/yourname" title="GitHub &rarr; https://github.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/yourname" title="Weibo &rarr; https://weibo.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://wangxiaopeng.top" title="https://wangxiaopeng.top" rel="noopener" target="_blank">老渔夫爱吃锅包肉</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://laxe.top" title="https://laxe.top" rel="noopener" target="_blank">大胖子</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王小朋</span>
+</div>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv">89568</span>次
+</span>
+<div class="copyright"><font color=black face=STLiti>Copyright &nbsp;</font><font color=black>&copy;</font> <font color=black face=STLiti>2016 - </font><font color=black face=STLiti><span itemprop="copyrightYear">2019</span></font>
+  <span class="with-love">
+    <i class="fa fa-[object Object]"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder" style="font-family:STLiti;color:black;">王小朋 . All Rights Reserved.</span>
+
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.1"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <link rel="stylesheet" href="/dist/APlayer.min.css">
+  <div id="aplayer"></div>
+  <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+  <script type="text/javascript" src="/dist/music.js"></script>
+
+
+  
+</body>
+
+</html>
+

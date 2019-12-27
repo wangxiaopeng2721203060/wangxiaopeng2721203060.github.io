@@ -265,6 +265,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2030/06/15/mysql_memory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王小朋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img.52z.com/upload/news/image/20190123/20190123012823_24294.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老渔夫爱吃锅包肉">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2030/06/15/mysql_memory/" class="post-title-link" itemprop="url">MySQL的MEMORY引擎</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2030-06-15 00:00:00" itemprop="dateCreated datePublished" datetime="2030-06-15T00:00:00+08:00">2030-06-15</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="MEMORY-介绍"><a href="#MEMORY-介绍" class="headerlink" title="MEMORY 介绍"></a>MEMORY 介绍</h4><blockquote>
+<p>MEMORY存储引擎创建的表数据只能保存在内存。</p>
+<p>memoery存储引擎是在内存中来创建表，每个memory表只实际对应一个磁盘文件格式是.frm.  该引擎的表访问非常得快，因为数据是放在内存中，且默认是hash索引，但服务关闭，表中的数据就会丢失掉。</p>
+<p>MySQL宕机、硬件故障或者意外掉电，都会造成MEMORY引擎表丢失数据。所以，MEMORY表中的数据来源于其他表(可落盘永久保存)用于只读适用，或者用于临时工作起到数据周转。</p>
+<p>服务器需要足够的内存来维护所有在同一时间使用的memory表，当不再需要时，要释放，应执行 delete from 或 truncate table 或删除表drop table。</p>
+<p>每个memory表放置的数据量大小，受到max_heap_table_size系统变量的约束，初始值是16MB. 通过max_rows 子句指定表的最大行数。</p>
+</blockquote>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2030/06/15/mysql_memory/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2030/06/15/mysql_innodb/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -395,100 +489,6 @@
           
             <div class="post-button">
               <a class="btn" href="/2030/06/15/mysql_select/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-    
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2030/06/15/mysql_memory/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王小朋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img.52z.com/upload/news/image/20190123/20190123012823_24294.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老渔夫爱吃锅包肉">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2030/06/15/mysql_memory/" class="post-title-link" itemprop="url">MySQL的MEMORY引擎</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2030-06-15 00:00:00" itemprop="dateCreated datePublished" datetime="2030-06-15T00:00:00+08:00">2030-06-15</time>
-            </span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="MEMORY-介绍"><a href="#MEMORY-介绍" class="headerlink" title="MEMORY 介绍"></a>MEMORY 介绍</h4><blockquote>
-<p>MEMORY存储引擎创建的表数据只能保存在内存。</p>
-<p>memoery存储引擎是在内存中来创建表，每个memory表只实际对应一个磁盘文件格式是.frm.  该引擎的表访问非常得快，因为数据是放在内存中，且默认是hash索引，但服务关闭，表中的数据就会丢失掉。</p>
-<p>MySQL宕机、硬件故障或者意外掉电，都会造成MEMORY引擎表丢失数据。所以，MEMORY表中的数据来源于其他表(可落盘永久保存)用于只读适用，或者用于临时工作起到数据周转。</p>
-<p>服务器需要足够的内存来维护所有在同一时间使用的memory表，当不再需要时，要释放，应执行 delete from 或 truncate table 或删除表drop table。</p>
-<p>每个memory表放置的数据量大小，受到max_heap_table_size系统变量的约束，初始值是16MB. 通过max_rows 子句指定表的最大行数。</p>
-</blockquote>
-          <!--noindex-->
-          
-            <div class="post-button">
-              <a class="btn" href="/2030/06/15/mysql_memory/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -919,81 +919,6 @@
   
 
     
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/Zabbix 监控系统/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王小朋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img.52z.com/upload/news/image/20190123/20190123012823_24294.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老渔夫爱吃锅包肉">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/12/21/Zabbix 监控系统/" class="post-title-link" itemprop="url">Untitled</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-12-21 10:24:21" itemprop="dateCreated datePublished" datetime="2019-12-21T10:24:21+08:00">2019-12-21</time>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Zabbix-监控系统"><a href="#Zabbix-监控系统" class="headerlink" title="Zabbix 监控系统"></a>Zabbix 监控系统</h2><h4 id="什么是监控系统？"><a href="#什么是监控系统？" class="headerlink" title="什么是监控系统？"></a>什么是监控系统？</h4>
-          <!--noindex-->
-          
-            <div class="post-button">
-              <a class="btn" href="/2019/12/21/Zabbix 监控系统/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-    
   </div>
 
   
@@ -1046,7 +971,7 @@
         
           <a href="/archives">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

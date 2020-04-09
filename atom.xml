@@ -220,6 +220,30 @@
   </entry>
   
   <entry>
+    <title>python配置环境变量</title>
+    <link href="http://yoursite.com/2031/06/03/python%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/"/>
+    <id>http://yoursite.com/2031/06/03/python配置环境变量/</id>
+    <published>2031-06-02T16:00:00.000Z</published>
+    <updated>2020-04-09T06:27:20.557Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Windows-配置python的环境变量"><a href="#Windows-配置python的环境变量" class="headerlink" title="Windows 配置python的环境变量"></a>Windows 配置python的环境变量</h2><ul><li>在Windos中安装Python2时是不会自动在计算机中配置环境变量的，导致有些初学者在CMD中通过输入 “python”没有出现预期结果。在这里就教大家如何配置Python的环境变量<a id="more"></a><h4 id="下载安装包地址"><a href="#下载安装包地址" class="headerlink" title="下载安装包地址"></a>下载安装包地址</h4><blockquote><p><a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python官网下载环境地址</a><br>首先第一步我们可以通过文件资源管理器中，找到此电脑，随即右键点击选择“属性”，当然了，如果您的桌面上有“此电脑”快捷图标，也可以直接在桌面执行相同操作，之后便会弹出如图所示的“系统”窗口，接下来在左边选项卡中选择高级系统设置<br><img src="/images/Win10%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEPython%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F1_files/1.jpg" alt="1-1" title="本博客的主人最帅"><br>点击了高级系统设置之后，便会显示“系统属性”窗口，在该窗口的右下角便是”环境变量“选项。点击进入环境变量的配置窗口，如下图所示。<br><img src="/images/Win10%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEPython%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F1_files/2.jpg" alt="1-1" title="本博客的主人最帅"><br><img src="/images/Win10%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEPython%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F1_files/3.jpg" alt="1-1" title="本博客的主人最帅"><br>接下来便是对环境变量的配置了。先在系统变量中找到“Path”一项，选中后点击编辑，出现接下来的“编辑环境变量”窗口。这个窗口中显示的便是计算机中已经配置好的环境变量，在此为了不破坏掉其他的变量，请不要对其他的内容做任何的操作，点击”新建”即可。<br><img src="/images/Win10%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEPython%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F1_files/4.jpg" alt="1-1" title="本博客的主人最帅"><br><img src="/images/Win10%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEPython%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F1_files/6.jpg" alt="1-1" title="本博客的主人最帅"><br>点击“新建”后窗口中会自动添加一项空白待填写的输入框，在其中输入Python的根目录即可。如图所示。接下来确定保存。这个时候再WIN+R -&gt; cmd打开命令窗口，输入“python“ ，确认环境变量的配置成功。以上便是Win10如何配置Python环境变量。<br><img src="/images/Win10%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEPython%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F1_files/7.jpg" alt="1-1" title="本博客的主人最帅"><br><img src="/images/Win10%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEPython%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F1_files/8.jpg" alt="1-1" title="本博客的主人最帅"><br>这就ok啦！</p></blockquote></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Windows-配置python的环境变量&quot;&gt;&lt;a href=&quot;#Windows-配置python的环境变量&quot; class=&quot;headerlink&quot; title=&quot;Windows 配置python的环境变量&quot;&gt;&lt;/a&gt;Windows 配置python的环境变量&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;在Windos中安装Python2时是不会自动在计算机中配置环境变量的，导致有些初学者在CMD中通过输入 “python”没有出现预期结果。在这里就教大家如何配置Python的环境变量
+    
+    </summary>
+    
+    
+      <category term="python基础" scheme="http://yoursite.com/categories/python%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="python基础" scheme="http://yoursite.com/tags/python%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
     <title>虚拟化、云计算概念</title>
     <link href="http://yoursite.com/2030/12/30/%E8%99%9A%E6%8B%9F%E5%8C%96%E3%80%81%E4%BA%91%E8%AE%A1%E7%AE%97%E6%A6%82%E5%BF%B5/"/>
     <id>http://yoursite.com/2030/12/30/虚拟化、云计算概念/</id>
@@ -433,27 +457,6 @@
     
     
       <category term="Vue" scheme="http://yoursite.com/tags/Vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>django与vue上传照片，通过 sqllite3 手动上传照片配置：</title>
-    <link href="http://yoursite.com/2030/10/08/My-New-Post/"/>
-    <id>http://yoursite.com/2030/10/08/My-New-Post/</id>
-    <published>2030-10-07T16:00:00.000Z</published>
-    <updated>2019-12-26T01:58:53.122Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="django与vue上传照片，通过-sqllite3-手动上传照片配置："><a href="#django与vue上传照片，通过-sqllite3-手动上传照片配置：" class="headerlink" title="django与vue上传照片，通过 sqllite3 手动上传照片配置："></a>django与vue上传照片，通过 sqllite3 手动上传照片配置：</h3><a id="more"></a><blockquote><p>第一步：</p></blockquote><ul><li>在项目文件夹中创建一个保存照片的文件夹，推荐用 ‘media’，因为后面会用到，现在记住了，后面也方便写。之后在 media 文件夹中再创建一个 ‘img’ 文件夹，负责保存照片</li></ul><blockquote><p>第二步：</p></blockquote><ul><li>在 settings 中配置：代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR,&apos;media&apos;)</span><br><span class="line"># 通过 ImageField 上传文件，会自动到‘medtia’文件夹中</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>第三步：</p></blockquote><ul><li>创建表时，创建问价字段选择 ImageField 。</li><li>ImageField 其中有个必写的字段，那就是 ‘upload_to’，这个字段后面填的是数据库存储照片时的地址。代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img = models.ImageField(upload_to=&apos;img&apos;) </span><br><span class="line"># 这就是上面我们在 media 文件夹中创建 img 文件夹的原因</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>第四步：</p></blockquote><ul><li>配置路由，方便我们在vue中渲染数据</li><li>代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from django.urls import path,re_path # 这个是我们创建django项目时自带的，只有后面的re_path是我们后加的</span><br><span class="line">from . import settings</span><br><span class="line">from django.views.static import serve</span><br><span class="line">re_path(&apos;^medtia/(?P&lt;path&gt;.*)/$&apos;,serve,&#123;&apos;document_root&apos;:settings.MEDTIA_ROOT&#125;)</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>在 vue 中我们该如何操作呢？</p></blockquote><ul><li><p>看下面的代码吧：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&apos;file&apos; id=&apos;img&apos;&gt;</span><br><span class="line">&apos;&apos;&apos;在文件框中，用 id 属性绑定&apos;&apos;&apos;</span><br></pre></td></tr></table></figure></li><li><p>下面的方法中，提取获取到的文件地址</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let img = document.getElementById(&apos;img&apos;).files[0]</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>OK！完成，收工</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;django与vue上传照片，通过-sqllite3-手动上传照片配置：&quot;&gt;&lt;a href=&quot;#django与vue上传照片，通过-sqllite3-手动上传照片配置：&quot; class=&quot;headerlink&quot; title=&quot;django与vue上传照片，通过 sqllite3 手动上传照片配置：&quot;&gt;&lt;/a&gt;django与vue上传照片，通过 sqllite3 手动上传照片配置：&lt;/h3&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Django" scheme="http://yoursite.com/tags/Django/"/>
     
   </entry>
   
